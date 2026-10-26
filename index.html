@@ -1,155 +1,77 @@
+from pathlib import Path
 
-<!DOCTYPE html>
+html = '''<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Liga Santarrosina de Fútbol</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #123e70;
-    }
-
-    .encabezado {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 14px;
-      border-bottom: 5px solid #79c9f2;
-      background: #ffffff;
-    }
-
-    .escudo {
-      width: clamp(85px, 24vw, 155px);
-      height: clamp(85px, 24vw, 155px);
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .nombre-liga {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-self: stretch;
-      padding: 4px 0;
-      font-family: 'Abril Fatface', Georgia, serif;
-      font-weight: normal;
-      color: #123e70;
-      text-shadow: 2px 3px 2px #999999;
-    }
-
-    .linea-uno {
-      font-size: clamp(19px, 5.1vw, 42px);
-      line-height: 1.15;
-    }
-
-    .linea-dos {
-      font-size: clamp(20px, 5.5vw, 38px);
-      line-height: 1.15;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 18px;
-      padding: 14px 8px;
-      background: #123e70;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 25px auto;
-      padding: 0 16px;
-    }
-
-    section {
-      padding: 20px;
-      margin-bottom: 18px;
-      border-radius: 10px;
-      border-left: 5px solid #65bde9;
-      background: #f1f9ff;
-    }
-
-    h2 { color: #123e70; }
-
-    footer {
-      padding: 22px 12px;
-      text-align: center;
-      color: #ffffff;
-      background: #123e70;
-    }
-
-    @media (max-width: 360px) {
-      .encabezado { gap: 9px; padding: 12px 8px; }
-      .linea-uno { font-size: 17px; }
-      .linea-dos { font-size: 19px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sitio oficial de la Liga Santarrosina de Fútbol.">
+<title>Liga Santarrosina de Fútbol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#123e70;--celeste:#79c9f2;--blanco:#fff;--fondo:#f4f8fc}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#243447;background:var(--fondo)}
+.encabezado{background:var(--blanco);border-bottom:4px solid var(--celeste);padding:16px 14px}
+.marca{max-width:1050px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:16px}
+.escudo{width:104px;height:104px;object-fit:contain;flex:0 0 auto}
+.nombre-liga{display:flex;flex-direction:column;justify-content:center;gap:0;line-height:.88;min-width:0}
+.nombre-liga .linea-principal,.nombre-liga .linea-secundaria{margin:0;padding:0;font-family:"Abril Fatface",Georgia,serif;font-weight:400;color:var(--azul);text-shadow:2px 3px 1px #b7b7b7;white-space:nowrap}
+.nombre-liga .linea-principal{font-size:clamp(25px,4.7vw,43px);letter-spacing:.2px;line-height:.9}
+.nombre-liga .linea-secundaria{font-size:clamp(24px,4.5vw,41px);letter-spacing:.3px;line-height:.88}
+.navegacion{background:var(--azul)}
+.navegacion nav{max-width:1050px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:4px;padding:8px 10px}
+.navegacion a{color:var(--blanco);text-decoration:none;font-weight:bold;padding:10px 13px;border-radius:5px}
+.navegacion a:hover,.navegacion a:focus{background:#245a91}
+main{max-width:1050px;margin:24px auto;padding:0 16px}
+.bienvenida,.seccion{background:var(--blanco);border-radius:12px;padding:24px 22px;box-shadow:0 3px 14px rgba(18,62,112,.08)}
+.bienvenida{border-left:5px solid var(--celeste)}
+h1,.seccion h2{color:var(--azul)}
+h1{margin-top:0}
+.seccion{margin-top:22px}
+.seccion h2{margin-top:0}
+.aviso{color:#526579;line-height:1.6}
+footer{margin-top:32px;background:var(--azul);color:var(--blanco);text-align:center;padding:20px 14px;line-height:1.6}
+@media(max-width:520px){
+.encabezado{padding:13px 8px}.marca{gap:10px}.escudo{width:84px;height:84px}
+.nombre-liga .linea-principal{font-size:clamp(21px,5.5vw,29px);letter-spacing:0}
+.nombre-liga .linea-secundaria{font-size:clamp(21px,5.4vw,28px);letter-spacing:0}
+}
+@media(max-width:360px){
+.marca{gap:7px}.escudo{width:72px;height:72px}
+.nombre-liga .linea-principal,.nombre-liga .linea-secundaria{font-size:20px}
+}
+</style>
 </head>
-
 <body>
-  <header class="encabezado">
-    <img class="escudo"
-      src="IMG-20260810-WA6213.jpg"
-      alt="Escudo de la Liga Santarrosina de Fútbol">
-
-    <div class="nombre-liga">
-      <div class="linea-uno">LIGA SANTARROSINA</div>
-      <div class="linea-dos">DE FÚTBOL</div>
-    </div>
-  </header>
-
-  <nav>
-    <a href="#liga">La Liga</a>
-    <a href="#campeonatos">Campeonatos</a>
-    <a href="#resultados">Resultados</a>
-    <a href="#clubes">Clubes</a>
-  </nav>
-
-  <main>
-    <section id="liga">
-      <h2>Bienvenidos</h2>
-      <p>Portal institucional de la Liga Santarrosina de Fútbol, Santa Rosa, Mendoza.</p>
-      <p>Información oficial para clubes, jugadores, dirigentes y simpatizantes.</p>
-    </section>
-
-    <section id="campeonatos">
-      <h2>Campeonatos</h2>
-      <p>Próximamente, información de fútbol y futsal.</p>
-    </section>
-
-    <section id="resultados">
-      <h2>Fixture, resultados y posiciones</h2>
-      <p>Los datos oficiales se incorporarán a medida que sean confirmados por la Liga.</p>
-    </section>
-
-    <section id="clubes">
-      <h2>Clubes</h2>
-      <p>Próximamente, información institucional de los clubes participantes.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>Liga Santarrosina de Fútbol</p>
-    <p>Santa Rosa · Mendoza · Argentina</p>
-  </footer>
+<header class="encabezado">
+<div class="marca">
+<img class="escudo" src="IMG-20260810-WA6213.jpg" alt="Escudo de la Liga Santarrosina de Fútbol">
+<div class="nombre-liga" aria-label="Liga Santarrosina de Fútbol">
+<div class="linea-principal">LIGA SANTARROSINA</div>
+<div class="linea-secundaria">DE FÚTBOL</div>
+</div>
+</div>
+</header>
+<div class="navegacion"><nav aria-label="Navegación principal">
+<a href="#la-liga">La Liga</a><a href="#campeonatos">Campeonatos</a><a href="#resultados">Resultados</a><a href="#clubes">Clubes</a>
+</nav></div>
+<main>
+<section class="bienvenida" id="la-liga">
+<h1>Bienvenidos a la Liga Santarrosina de Fútbol</h1>
+<p class="aviso">Sitio institucional oficial. Aquí se publicará la información de la Liga, sus campeonatos, resultados y clubes.</p>
+</section>
+<section class="seccion" id="campeonatos"><h2>Campeonatos</h2><p class="aviso">Próximamente se publicará aquí la información oficial de los campeonatos.</p></section>
+<section class="seccion" id="resultados"><h2>Resultados</h2><p class="aviso">Los resultados y las tablas de posiciones se incorporarán en esta sección.</p></section>
+<section class="seccion" id="clubes"><h2>Clubes afiliados</h2><p class="aviso">Próximamente se publicará la información institucional de los clubes afiliados.</p></section>
+</main>
+<footer><strong>Liga Santarrosina de Fútbol</strong><br>Sitio institucional oficial</footer>
 </body>
-</html>
+</html>'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+print(f"Archivo listo: {path} — {path.stat().st_size} bytes")
